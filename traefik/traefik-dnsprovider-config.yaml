@@ -1,0 +1,13 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: traefik-dnsprovider-config
+  namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress-lb
+data:
+  AZURE_CLIENT_ID:
+  AZURE_CLIENT_SECRET:
+  AZURE_RESOURCE_GROUP:
+  AZURE_SUBSCRIPTION_ID:
+  AZURE_TENANT_ID:
