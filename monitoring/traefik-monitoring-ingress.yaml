@@ -1,0 +1,21 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: monitoring-ingress
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: grafana.internal.domain
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+  - host: prometheus.internal.domain
+    http:
+      paths:
+        backend:
+          serviceName: prometheus-k8s
+          servicePort: 9090
