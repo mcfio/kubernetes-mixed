@@ -1,0 +1,20 @@
+# ------------------- Rook Storage Pool ----------------------- #
+
+kind: Pool
+apiVersion: rook.io/v1alpha1
+metadata:
+  name: rook-storage
+  namespace: rook
+spec:
+  replicated:
+    size: 1
+---
+# ------------------- Rook Block Storage Class ----------------------- #
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+   name: block-storage
+provisioner: rook.io/block
+parameters:
+  pool: rook-storage

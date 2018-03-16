@@ -1,0 +1,42 @@
+# ------------------- Rook Cluster Namespace ----------------------- #
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: rook
+---
+# ------------------------ Rook Cluster ---------------------------- #
+
+kind: Cluster
+apiVersion: rook.io/v1alpha1
+metadata:
+  name: rook
+  namespace: rook
+spec:
+  backend: ceph
+  dataDirHostPath: /var/lib/rook
+  hostNetwork: false
+  monCount: 2
+  resources:
+    api:
+      limits:
+        cpu: "500m"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "1024Mi"
+  storage:
+    useAllNodes: false
+    useAllDevices: false
+    deviceFilter:
+    metadataDevice:
+    location:
+    storeConfig:
+      storeType: bluestore
+      databaseSizeMB: 1024
+      journalSizeMB: 1024
+    nodes:
+    - name: "node-name"
+      devices:
+      - name: "disk-by-device-id"
+      - name: "disk-by-device-id"
